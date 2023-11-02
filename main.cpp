@@ -18,10 +18,19 @@ struct Librarian{
     bool hasMapToLibrary;
 };
 
+struct Monster{
+    std::string name;
+    int health;
+    int damage;
+};
+
 int main() {
     std::srand(std::time(0));
     Player player;
     player.health = 100;
+    Monster troll;
+    troll.health = 100;
+    troll.damage = 100;
     Librarian eldric = {
         "Eldric",
         {
@@ -60,10 +69,10 @@ int main() {
     int nestedChoice;
     bool exploring = true;
 
-    while (exploring == true)
+    while (exploring == true && player.health > 0)
     {
-    
-    std::cout << "You are in the town of Riverwood, where do you want to go first " << player.name << "?" << std::endl;
+    std::cout << "--------------------------------------------------------" << std::endl;
+    std::cout << "You are in the town of Riverwood, where do you want to go " << player.name << "?" << std::endl;
     std::cout << "1. Riverwood Trading Post" << std::endl;
     std::cout << "2. Riverwood Library" << std::endl;
     std::cout << "3. Riverwood River" << std::endl;
@@ -74,7 +83,26 @@ int main() {
 
     switch(choice) {
         case 1:
-            std::cout << "You chose the Riverwood Trading Post" << std::endl;
+            std::cout << player.name << " approaches the trading post... *rustles* " << player.name << " hears some strange noise coming from the woods" << std::endl;
+            std::cout << player.name << " decides to go check it out..as " << player.name << " enters the forest, the ground begins to shake and a Troll appears" << std::endl;
+            std::cout << player.name << " draws their sword out and the troll begins to charge." << std::endl;
+            std::cout << player.name << " can either 1. dodge the charging troll or 2. attack the troll back" << std::endl;
+            int fightChoice;
+            std::cin >> fightChoice;
+            if (fightChoice == 1)
+            {
+                std::cout << player.name << " dodges the troll, the troll stumbles on past" << std::endl;
+                std::cout << player.name << " can either 1. strike the vulnerable troll 2. try to communicate that you are peaceful" << std::endl;
+                int dodgeChoice;
+                std::cin >> dodgeChoice;
+                if (dodgeChoice == 2)
+                {
+                    std::cout << "'Hey!, I am " << player.name << " and I am peaceful!'...the troll doesnt understand english and smacks " << player.name << << " down" << std::endl;
+                    std::cout << "The light fades to black as the Troll stands over you" << std::endl;
+                    player.health -= troll.damage;
+                }
+                
+            }
             break;
         case 2:
         {
@@ -101,7 +129,7 @@ int main() {
             {
                 std::cout << eldric.name << " discreetly hands you a map of the Riverwood library" << std::endl;
                 player.inventory[player.inventoryCount++] = "Map of the Riverwood Library";
-                eldric.hasMapToLibrary 2= false;
+                eldric.hasMapToLibrary = false;
             }
             break;
         }
