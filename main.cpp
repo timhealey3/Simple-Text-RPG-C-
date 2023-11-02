@@ -95,13 +95,27 @@ int main() {
                 std::cout << player.name << " can either 1. strike the vulnerable troll 2. try to communicate that you are peaceful" << std::endl;
                 int dodgeChoice;
                 std::cin >> dodgeChoice;
-                if (dodgeChoice == 2)
+                if (dodgeChoice == 1)
                 {
-                    std::cout << "'Hey!, I am " << player.name << " and I am peaceful!'...the troll doesnt understand english and smacks " << player.name << << " down" << std::endl;
+                    std::cout << "In the exact moment the Troll is off balance " << player.name << " raises their sword and swiftly strikes down the Troll" << std::endl;
+                    std::cout << "Townsfolk emerge from behind the trees, cheering! The Earl of Riverwood gifts you his personal sword" << std::endl;
+                    std::cout << "- A new item has been added to your inventory Earl Sword -" << std::endl;
+                    player.inventory[player.inventoryCount++] == "Earl Sword";
+                }
+                else if (dodgeChoice == 2)
+                {
+                    std::cout << "'Hey!, I am " << player.name << " and I am peaceful!'...the troll doesnt understand english and smacks " << player.name << " down" << std::endl;
                     std::cout << "The light fades to black as the Troll stands over you" << std::endl;
                     player.health -= troll.damage;
-                }
-                
+                }  
+            }
+            else if (fightChoice == 2)
+            {
+                std::cout << player.name << " raises their sword as the troll runs directly at them " << std::endl;
+                std::cout << "the troll is within striking distance and " << player.name << " takes the oppurtunity to strike the troll down" << std::endl;
+                std::cout << " the sword bounces off the trolls thick skin and " << player.name << " get knocked down by the now enraged troll" << std::endl;
+                std::cout << "The light fades to black as the Troll stands over you" << std::endl;
+                player.health -= troll.damage;
             }
             break;
         case 2:
@@ -162,6 +176,7 @@ int main() {
                     std::cout << "- " << player.inventory[i] << std::endl;
                 }
             }
+            break;
         case 5:
             exploring = false;
             break;
